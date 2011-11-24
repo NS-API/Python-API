@@ -1,0 +1,7 @@
+Deze API bevat voorbeelden hoe je de NS API kunt bevragen in Python.
+Ik heb gewerkt met een secret.py je kunt die vullen met de gegevens
+die je hebt gekregen van de NS.
+
+secret.py:
+username = 'stefan@opengeo.nl'
+password = 'LANGECODEMETEENHEELLANGWACHTWOORD'
