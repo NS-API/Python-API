@@ -6,6 +6,12 @@ import httplib2
 
 
 class reismogelijkheid():
+    class tijden():
+        def __init__(self, xml, typetijd):
+            self.reistijd     = time.strptime(xml.find('{http://openov.nl/protocol/nsapi}'+typetijd+'ReisTijd').text, '%H:%M')
+            self.aankomsttijd = dateutil.parser.parse(xml.find('{http://openov.nl/protocol/nsapi}'+typetijd+'AankomstTijd').text)
+            self.vertrektijd  = dateutil.parser.parse(xml.find('{http://openov.nl/protocol/nsapi}'+typetijd+'VertrekTijd').text)
+
     class verstoring():
         def __init__(self, xml):
             self.id = xml.find('{http://openov.nl/protocol/nsapi}Id').text
@@ -36,15 +42,8 @@ class reismogelijkheid():
         if self.aantaloverstappen is not None:
             self.aantaloverstappen = self.aantaloverstappen.text
 
-        self.gepland = {}
-        self.gepland['reistijd']     = time.strptime(xml.find('{http://openov.nl/protocol/nsapi}GeplandeReisTijd').text, '%H:%M')
-        self.gepland['aankomsttijd'] = dateutil.parser.parse(xml.find('{http://openov.nl/protocol/nsapi}GeplandeAankomstTijd').text)
-        self.gepland['vertrektijd']  = dateutil.parser.parse(xml.find('{http://openov.nl/protocol/nsapi}GeplandeVertrekTijd').text)
-        
-        self.actueel = {}
-        self.actueel['reistijd']     = time.strptime(xml.find('{http://openov.nl/protocol/nsapi}ActueleReisTijd').text, '%H:%M')
-        self.actueel['aankomsttijd'] = dateutil.parser.parse(xml.find('{http://openov.nl/protocol/nsapi}ActueleAankomstTijd').text)
-        self.actueel['vertrektijd']  = dateutil.parser.parse(xml.find('{http://openov.nl/protocol/nsapi}ActueleVertrekTijd').text)
+        self.gepland = self.tijden(xml, 'Geplande')
+        self.actueel = self.tijden(xml, 'Actuele')
 
         self.reisdelen = [self.reisdeel(xmldeel) for xmldeel in xml.findall('{http://openov.nl/protocol/nsapi}ReisDeel')]
 
