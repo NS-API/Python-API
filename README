@@ -1,4 +1,7 @@
 Deze API bevat voorbeelden hoe je de NS API kunt bevragen in Python.
+Alles is momenteel geimplementeerd als een klasse, dus je hoeft geen
+kennis van XML te hebben om hiermee wat te kunnen doen.
+
 Ik heb gewerkt met een secret.py je kunt die vullen met de gegevens
 die je hebt gekregen van de NS.
 
