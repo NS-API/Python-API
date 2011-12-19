@@ -95,7 +95,7 @@ class treinplanner():
             except:
                 pass
 
-    def fetchandparse(self, *args):
-        root = self.fetch(*args)
+    def fetchandparse(self, from_station, to_station, via_station=None, previous_advices=5, next_advices=5, date_time=None, departure=True, hsl_allowed=True, year_card=False):
+        root = self.fetch(from_station, to_station, via_station, previous_advices, next_advices, date_time, departure, hsl_allowed, year_card)
         if root is not None:
             return [reismogelijkheid(xmlmogelijkheid) for xmlmogelijkheid in root.findall('{http://openov.nl/protocol/nsapi}ReisMogelijkheid')]
