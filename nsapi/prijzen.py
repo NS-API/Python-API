@@ -37,7 +37,7 @@ class prijzen():
             except:
                 pass
 
-    def fetchandparse(self, from_station, to_station, via_station=None, date_time=None):
-        root = self.fetch(from_station, to_station, via_station, date_time)
+    def fetchandparse(self, *args, **kwargs):
+        root = self.fetch(*args, **kwargs)
         if root is not None:
             return [product(xmlproduct) for xmlproduct in root.findall('{http://openov.nl/protocol/nsapi}Product')]

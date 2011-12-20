@@ -27,7 +27,7 @@ class stations():
             except:
                 pass
 
-    def fetchandparse(self):
-        root = self.fetch()
+    def fetchandparse(self, *args, **kwargs):
+        root = self.fetch(*args, **kwargs)
         if root is not None:
             return [station(xmlstation) for xmlstation in root.findall('{http://openov.nl/protocol/nsapi}station')]

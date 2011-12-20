@@ -55,8 +55,8 @@ class storingen():
             except:
                 pass
 
-    def fetchandparse(self, station=None, actual=None, unplanned=None):
-        root = self.fetch(station, actual, unplanned)
+    def fetchandparse(self, *args, **kwargs):
+        root = self.fetch(station, *args, **kwargs)
         if root is not None:
             ongepland = [ongeplandestoring(xmlstoring) for xmlstoring in root.findall('{http://openov.nl/protocol/nsapi}Ongepland/{http://openov.nl/protocol/nsapi}Storing')]
             gepland   = [  geplandestoring(xmlstoring) for xmlstoring in root.findall('{http://openov.nl/protocol/nsapi}Gepland/{http://openov.nl/protocol/nsapi}Storing')]

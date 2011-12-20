@@ -29,7 +29,7 @@ class avt():
             except:
                 pass
 
-    def fetchandparse(self, station):
-        root = self.fetch(station)
+    def fetchandparse(self, *args, **kwargs):
+        root = self.fetch(*args, **kwargs)
         if root is not None:
             return [vertrekkendetrein(xmltrein) for xmltrein in root.findall('{http://openov.nl/protocol/nsapi}VertrekkendeTrein')]
