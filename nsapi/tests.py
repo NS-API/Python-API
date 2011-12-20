@@ -6,7 +6,7 @@ from avt import avt
 from storingen import storingen
 
 treinplanner = treinplanner(username, password)
-x = planner.fetchandparse('ut', 'apd', previous_advices=1, next_advices=1)
+x = treinplanner.fetchandparse('ut', 'apd', previous_advices=1, next_advices=1)
 
 prijzen = prijzen(username, password)
 x = prijzen.fetchandparse('ehv', 'bet')
