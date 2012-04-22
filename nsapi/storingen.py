@@ -32,7 +32,7 @@ class geplandestoring():
 
 class storingen():
     def __init__(self, username, password):
-        self.http = httplib2.Http()
+        self.http = httplib2.Http(disable_ssl_certificate_validation=True)
         self.http.follow_redirects = False
         self.http.add_credentials(username, password)
 
@@ -56,7 +56,7 @@ class storingen():
                 pass
 
     def fetchandparse(self, *args, **kwargs):
-        root = self.fetch(station, *args, **kwargs)
+        root = self.fetch(*args, **kwargs)
         if root is not None:
             ongepland = [ongeplandestoring(xmlstoring) for xmlstoring in root.findall('{http://openov.nl/protocol/nsapi}Ongepland/{http://openov.nl/protocol/nsapi}Storing')]
             gepland   = [  geplandestoring(xmlstoring) for xmlstoring in root.findall('{http://openov.nl/protocol/nsapi}Gepland/{http://openov.nl/protocol/nsapi}Storing')]

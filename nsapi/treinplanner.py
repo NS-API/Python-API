@@ -58,7 +58,7 @@ class reismogelijkheid():
 
 class treinplanner():
     def __init__(self, username, password):
-        self.http = httplib2.Http()
+        self.http = httplib2.Http(disable_ssl_certificate_validation=True)
         self.http.follow_redirects = False
         self.http.add_credentials(username, password)
 
